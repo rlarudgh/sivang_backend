@@ -53,7 +53,8 @@
     "typeorm": "^0.2.41",
     "typeorm-naming-strategies": "^4.1.0",
     "typeorm-naming-strategy": "^2.0.1",
-    "winston": "^3.8.2"
+    "winston": "^3.8.2",
+    "xml2js": "^0.5.0"
   },
   "devDependencies": {
     "@nestjs/cli": "^9.0.0",
