@@ -1,8 +1,7 @@
-import { BadRequestException, ConflictException, Injectable } from '@nestjs/common';
+import { BadRequestException, ConflictException, HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
 import * as bcrypt from 'bcrypt';
-import { sign } from 'jsonwebtoken';
 import { User } from 'src/users/user.entity';
 import { Repository } from 'typeorm';
 
@@ -36,21 +35,22 @@ export class AuthService {
     const user: User = await this.usersRepository.findOne({ email });
 
     if (!user) {
-      return null;
+      throw new HttpException('이메일을 확인해주세요.', HttpStatus.UNAUTHORIZED);
     }
 
     const isPasswordValid: boolean = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
-      return null;
+      throw new HttpException('비밀번호를 확인해주세요.', HttpStatus.UNAUTHORIZED);
     }
 
     return user;
   }
 
-  login(user: User) {
+  async login(user: User) {
     const payload = { email: user.email, sub: user.id };
     return {
-      access_token: sign(payload, 'sivang'),
+      access_token: this.jwtService.sign(payload, { expiresIn: '1d' }),
+      expiredIn: '1d',
     };
   }
 }

@@ -1,27 +1,21 @@
-import { Injectable } from '@nestjs/common';
+import { Controller, Get, UseGuards } from '@nestjs/common';
+import { MypageType } from 'src/mypage/mypage.interface';
+import { MypageDto } from 'src/mypage/mypage.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './user.entity';
 import { UserRepository } from './user.repository';
-import { MypageDto } from 'src/mypage/mypage.dto';
-import { MypageType } from 'src/mypage/mypage.interface';
+import { AuthGuard } from '@nestjs/passport';
 
-@Injectable()
-export class UserService {
+@Controller('user')
+export class UserController {
   constructor(
     @InjectRepository(User)
     private userRepository: UserRepository,
   ) {}
 
-  async findByEmail(email: string): Promise<User> {
-    return this.userRepository.findOne({ email });
-  }
-
-  async createUser(email: string, name: string, password: string): Promise<User> {
-    const user: User = this.userRepository.create({ email, name, password });
-    return this.userRepository.save(user);
-  }
-
-  async getMypage(request: any):Promise<MypageType> {
+  @UseGuards(AuthGuard('jwt'))
+  @Get('mypage')
+  async getMypage(request): Promise<MypageType> {
     const user = await this.userRepository.findOne({ where: { id: request.user.id } });
     const mypageDto = new MypageDto();
 
