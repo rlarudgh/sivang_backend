@@ -1,9 +1,9 @@
-import { compare, hash } from "bcrypt";
+import * as bcrypt from 'bcrypt';
 
 export const generatePasswordHash = (password: string) => {
-  return hash(password, 10);
+  return bcrypt.hash(password, 10);
 };
 
 export const comparePassword = (hashedPassword: string, password: string) => {
-  return compare(hashedPassword, password);
+  return bcrypt.compare(hashedPassword, password);
 };
