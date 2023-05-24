@@ -14,7 +14,7 @@ export const createUser = async (
 
     await authInstance.signUp(userInfo);
 
-    response.status(201).json({ message: '유저 생성 성공', userInfo });
+    response.status(201).json({ message: '유저 생성 성공' });
   } catch (error: unknown) {
     console.error('회원가입 실패', error);
     response.status(500).json({ error: 'Failed to sign up' });
