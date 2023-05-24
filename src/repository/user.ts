@@ -3,7 +3,7 @@ import { PostSignUpRequestType } from '../interface/user/signUp';
 
 const prismaClient = new PrismaClient();
 
-export class userRepository{
+export class userRepository {
   public createUser = async (userInfo: PostSignUpRequestType) => {
     await prismaClient.user.create({
       data: {
