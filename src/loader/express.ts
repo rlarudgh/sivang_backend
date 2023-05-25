@@ -7,7 +7,14 @@ export const expressLoader = (app: Application): void => {
   app.use(json());
 
   app.use(morgan('dev'));
-  app.use(cors());
+
+  const CorsOption = {
+    origin: '*',
+    method: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD'],
+    credentials: true,
+  };
+
+  app.use(cors(CorsOption));
 
   app.use('/', apiRouter);
 
