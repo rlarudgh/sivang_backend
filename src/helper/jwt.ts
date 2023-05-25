@@ -1,5 +1,5 @@
 import { config } from '../config';
-import jwt from 'jsonwebtoken';
+import jwt, { JwtPayload } from 'jsonwebtoken';
 
 interface JWTPayload {
   userId: number;
@@ -13,7 +13,7 @@ export class JWTHelper {
   }
 
   public generateToken = ({ userId }: JWTPayload): string => {
-    return jwt.sign({ userId }, config.jwt.secret, { expiresIn: config.jwt.expiresIn });
+    return jwt.sign({ userId }, this.secret, { expiresIn: config.jwt.expiresIn });
   };
 
   public generateAccessToken = ({ userId }: JWTPayload): string => {
@@ -30,8 +30,8 @@ export class JWTHelper {
     return decodedToken;
   };
 
-  public decodeAccessToken = async (token: string): Promise<JWTPayload> => {
-    const decodedAccessToken: JWTPayload = (await this.verifyJwtToken(token)) as JWTPayload;
+  public decodeAccessToken = (token: string): JwtPayload => {
+    const decodedAccessToken: JWTPayload = jwt.verify(token, this.secret) as JWTPayload;
     return decodedAccessToken;
   };
 }
