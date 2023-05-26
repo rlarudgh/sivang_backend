@@ -24,7 +24,7 @@ model money{
   type String @default("+")
   title String @default("")
   description String @default("")
-  userId Int
-  auto Boolean @default(false)
+  userId Int @unique
+  auto Boolean @default(false) // true + false -
   user user @relation(fields: [userId], references: [id])
 }
