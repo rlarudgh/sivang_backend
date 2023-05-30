@@ -22,4 +22,29 @@ export class MoneyRepository {
       throw new Error('Failed to create money entry');
     }
   };
+
+  public getMoneyPostList = async (userId: number) => {
+    try {
+      const moneyPost = await prisma.money.findMany({
+        where: {
+          userId: userId,
+        },
+        select: {
+          id: true,
+          name: true,
+          amount: true,
+          type: true,
+          title: true,
+          description: true,
+          auto: true,
+          regularWeek: true,
+        },
+      });
+
+      return moneyPost;
+    } catch (err: unknown) {
+      console.error(err);
+      throw new Error('Failed to get money entry');
+    }
+  };
 }

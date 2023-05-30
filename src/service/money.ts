@@ -24,4 +24,15 @@ export class MoneyService {
       throw new Error('가계부 작성 실패');
     }
   };
+
+  public getMoneyPostList = async (userId: number) => {
+    try {
+      const moneyPostList = await this.moneyRepository.getMoneyPostList(userId);
+
+      return moneyPostList;
+    } catch (error: unknown) {
+      console.error(error);
+      throw new Error('가계부 조회 실패');
+    }
+  };
 }

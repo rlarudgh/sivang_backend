@@ -1,6 +1,7 @@
 import { Router } from 'express';
-import { postMoney } from './money.controller';
+import { getMoney, postMoney } from './money.controller';
 
 export const moneyRouter = Router();
 
 moneyRouter.post('/post', postMoney);
+moneyRouter.get('/get', getMoney);

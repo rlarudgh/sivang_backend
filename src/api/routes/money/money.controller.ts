@@ -23,3 +23,21 @@ export const postMoney = async (request: Request, response: Response, next: Next
     next(err);
   }
 };
+
+export const getMoney = async (request: Request, response: Response, next: NextFunction) => {
+  try {
+    const jwtHelper: JWTHelper = new JWTHelper();
+    const accessToken: string = getAccessToken(request.headers.authorization);
+    const decodeAccessToken = jwtHelper.decodeAccessToken(accessToken);
+    const { userId }: JwtPayload = decodeAccessToken as JwtPayload;
+    const moneyInstance: MoneyService = new MoneyService();
+
+    const moneyPostList = await moneyInstance.getMoneyPostList(userId);
+
+    response.status(200).json({ message: '가계부 조회 성공', moneyPostList });
+  } catch (err: unknown) {
+    console.error('가계부 조회 실패', err);
+    response.status(500).json(error.userError.serverError);
+    next(error);
+  }
+};
