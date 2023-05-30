@@ -21,10 +21,11 @@ model money{
   name String
   amount Int @default(0)
   createAt DateTime @default(now())
-  type String @default("+")
+  type Boolean
   title String @default("")
   description String @default("")
   userId Int @unique
   auto Boolean @default(false) // true + false -
+  regularWeek Int @default(0)
   user user @relation(fields: [userId], references: [id])
 }
