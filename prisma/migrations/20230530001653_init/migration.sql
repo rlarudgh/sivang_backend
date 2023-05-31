@@ -1,2 +1,0 @@
--- AlterTable
-ALTER TABLE `money` ADD COLUMN `regularWeek` INTEGER NOT NULL DEFAULT 0;

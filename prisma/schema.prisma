@@ -7,25 +7,24 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model user{
-  id Int @id @default(autoincrement())
-  email String @unique
-  name String
-  password String
-  createAt DateTime @default(now())
-  moneys money[]
+model user {
+  id        Int       @id @default(autoincrement())
+  email     String    @unique
+  name      String
+  password  String
+  createAt  DateTime  @default(now())
+  moneys    money[]
 }
 
-model money{
-  id Int @id @default(autoincrement())
-  name String
-  amount Int @default(0)
-  createAt DateTime @default(now())
-  type Boolean
-  title String @default("")
-  description String @default("")
-  userId Int @unique
-  auto Boolean @default(false) // true + false -
-  regularWeek Int @default(0)
-  user user @relation(fields: [userId], references: [id])
+model money {
+  id           Int       @id @default(autoincrement())
+  title        String    @default("")
+  amount       Int       @default(0)
+  createAt     DateTime  @default(now())
+  type         Boolean
+  description  String    @default("")
+  userId       Int
+  auto         Boolean   @default(false) // true + false -
+  regularWeek  Int       @default(0)
+  user         user      @relation(fields: [userId], references: [id])
 }
