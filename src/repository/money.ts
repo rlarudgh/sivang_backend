@@ -8,7 +8,7 @@ export class MoneyRepository {
     try {
       await prisma.money.create({
         data: {
-          name: moneyInfo.title,
+          title: moneyInfo.title,
           description: moneyInfo.content,
           amount: moneyInfo.cost,
           type: moneyInfo.type,
@@ -19,6 +19,7 @@ export class MoneyRepository {
         },
       });
     } catch (error: unknown) {
+      console.error('Failed to create money entry:', error);
       throw new Error('Failed to create money entry');
     }
   };
@@ -31,7 +32,6 @@ export class MoneyRepository {
         },
         select: {
           id: true,
-          name: true,
           amount: true,
           type: true,
           title: true,
@@ -45,6 +45,42 @@ export class MoneyRepository {
     } catch (err: unknown) {
       console.error(err);
       throw new Error('Failed to get money entry');
+    }
+  };
+
+  public findMoneyPost = async (moneyId: number, userId: number) => {
+    try {
+      const moneyPost = await prisma.money.findUnique({
+        where: {
+          id: moneyId,
+        },
+      });
+
+      return moneyPost;
+    } catch (err: unknown) {
+      console.error(err);
+      throw new Error('Failed to find money entry');
+    }
+  };
+
+  public updateMoneyPost = async ({ moneyId, moneyInfo }: { moneyId: number; moneyInfo: PostMoneyType }) => {
+    try {
+      await prisma.money.update({
+        where: {
+          id: moneyId,
+        },
+        data: {
+          title: moneyInfo.title,
+          description: moneyInfo.content,
+          amount: moneyInfo.cost,
+          type: moneyInfo.type,
+          auto: moneyInfo.auto,
+          regularWeek: moneyInfo.regularWeek,
+        },
+      });
+    } catch (err: unknown) {
+      console.error(err);
+      throw new Error('Failed to update money entry');
     }
   };
 }

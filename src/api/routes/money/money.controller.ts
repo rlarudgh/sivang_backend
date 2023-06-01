@@ -41,3 +41,41 @@ export const getMoney = async (request: Request, response: Response, next: NextF
     next(error);
   }
 };
+
+export const getMoneyItem = async (request: Request, response: Response, next: NextFunction) => {
+  try {
+    const jwtHelper: JWTHelper = new JWTHelper();
+    const accessToken: string = getAccessToken(request.headers.authorization);
+    const decodeAccessToken = jwtHelper.decodeAccessToken(accessToken);
+    const { userId }: JwtPayload = decodeAccessToken as JwtPayload;
+    const moneyId = Number(request.params.id);
+    const moneyInstance: MoneyService = new MoneyService();
+    const moneyPost = await moneyInstance.findMoneyPost(moneyId, userId);
+
+    response.status(200).json({ message: '가계부 아이템 조회 성공', moneyPost });
+  } catch (err: unknown) {
+    console.error('가계부 아이템 조회 실패', err);
+    response.status(500).json(error.userError.serverError);
+    next(error);
+  }
+};
+
+export const modifyMoneyItem = async (request: Request, response: Response, next: NextFunction) => {
+  try {
+    const modifyInfo = request.body;
+    const jwtHelper: JWTHelper = new JWTHelper();
+    const accessToken: string = getAccessToken(request.headers.authorization);
+    const decodeAccessToken: JwtPayload = jwtHelper.decodeAccessToken(accessToken);
+    const { userId }: JwtPayload = decodeAccessToken as JwtPayload;
+    const moneyId = Number(request.params.id);
+    const moneyInstance: MoneyService = new MoneyService();
+
+    await moneyInstance.updateMoneyPost({ userId, moneyId, moneyInfo: modifyInfo });
+
+    response.status(200).json({ message: '가계부 아이템 수정 성공' });
+  } catch (err: unknown) {
+    console.error('가계부 아이템 수정 실패', err);
+    response.status(500).json(error.userError.serverError);
+    next(error);
+  }
+};
