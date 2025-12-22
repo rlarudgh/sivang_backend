@@ -2,8 +2,6 @@
 
 <div align="center">
 
-![Sivang ERD](https://private-user-images.githubusercontent.com/81161675/247464042-82c7572c-a8e3-42c1-90e6-4bdc2f8e6bc9.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NjYzNzAyNjksIm5iZiI6MTc2NjM2OTk2OSwicGF0aCI6Ii84MTE2MTY3NS8yNDc0NjQwNDItODJjNzU3MmMtYThlMy00MmMxLTkwZTYtNGJkYzJmOGU2YmM5LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTEyMjIlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUxMjIyVDAyMTkyOVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTgyNTBkODk5MzRkZDU4NWVhZDcwY2RiMTgzYThmMDk4NDBlZTFhNjYzMmFmM2M1NGM0NjBiYTYzMDZmMjYzMmImWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.CjG-w5I7ZBCWrz7NdeprTts_N_FUi5a0UhB24nFv1g0)
-
 [![Stars](https://img.shields.io/github/stars/rlarudgh/sivang_backend?style=social)](https://github.com/rlarudgh/sivang_backend/stargazers)
 [![Node.js](https://img.shields.io/badge/Node.js-Express-green?logo=node.js)](https://nodejs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-4.x-blue?logo=typescript)](https://www.typescriptlang.org/)
@@ -165,6 +163,8 @@ sivang_backend/
 ---
 
 ## 📊 데이터베이스 ERD
+
+![Sivang ERD](https://private-user-images.githubusercontent.com/81161675/247464042-82c7572c-a8e3-42c1-90e6-4bdc2f8e6bc9.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NjYzNzAyNjksIm5iZiI6MTc2NjM2OTk2OSwicGF0aCI6Ii84MTE2MTY3NS8yNDc0NjQwNDItODJjNzU3MmMtYThlMy00MmMxLTkwZTYtNGJkYzJmOGU2YmM5LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTEyMjIlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUxMjIyVDAyMTkyOVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTgyNTBkODk5MzRkZDU4NWVhZDcwY2RiMTgzYThmMDk4NDBlZTFhNjYzMmFmM2M1NGM0NjBiYTYzMDZmMjYzMmImWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.CjG-w5I7ZBCWrz7NdeprTts_N_FUi5a0UhB24nFv1g0)
 
 위의 ERD 다이어그램은 Sivang의 데이터베이스 구조를 보여줍니다. 주요 테이블은 다음과 같습니다:
 
